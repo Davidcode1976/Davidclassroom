@@ -18,7 +18,7 @@ def get_pic_url(i,headers):
 
 def download_pic(pic_url,headers):
     get_pic=requests.get('http:'+pic_url,headers)
-    pic_name=r'pic_file_path\%s'% str(pic_url.split('/')[-1])
+    pic_name=r'pic_file\%s'% str(pic_url.split('/')[-1])
     with open(pic_name,'wb')as f:
         f.write(get_pic.content)
     print('%s下载完成'%str(pic_url.split('/')[-1]))
@@ -27,9 +27,9 @@ def download_pic(pic_url,headers):
 def main():
     headers = {'User-Agent': 'Chrome'}
 
-    isExist = os.path.exists('pic_file_path')
+    isExist = os.path.exists('pic_file')
     if not isExist:
-        os.makedirs('pic_file_path')
+        os.makedirs('pic_file')
 
     begin_page = int(input('请输入起始页: '))
     end_page = int(input('请输入终止页：'))
