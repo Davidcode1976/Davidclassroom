@@ -19,10 +19,12 @@ def get_pic_url(i,headers):
 def download_pic(pic_url,headers):
     get_pic=requests.get('http:'+pic_url,headers)
     pic_name=r'pic_file\%s'% str(pic_url.split('/')[-1])
-    with open(pic_name,'wb')as f:
-        f.write(get_pic.content)
-    print('%s下载完成'%str(pic_url.split('/')[-1]))
-
+    try:
+        with open(pic_name,'wb')as f:
+            f.write(get_pic.content)
+            print('%s下载完成'%str(pic_url.split('/')[-1]))
+    except:
+        print('%s下载失败'%str(pic_url.split('/')[-1]))
 
 def main():
     headers = {'User-Agent': 'Chrome'}
